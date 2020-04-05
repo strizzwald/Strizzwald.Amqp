@@ -1,0 +1,9 @@
+/Users/kennedy/RiderProjects/Strizzwald.Amqp/Amqp.Types/bin/Debug/netcoreapp3.1/Amqp.Types.deps.json
+/Users/kennedy/RiderProjects/Strizzwald.Amqp/Amqp.Types/bin/Debug/netcoreapp3.1/Amqp.Types.dll
+/Users/kennedy/RiderProjects/Strizzwald.Amqp/Amqp.Types/bin/Debug/netcoreapp3.1/Amqp.Types.pdb
+/Users/kennedy/RiderProjects/Strizzwald.Amqp/Amqp.Types/obj/Debug/netcoreapp3.1/Amqp.Types.csprojAssemblyReference.cache
+/Users/kennedy/RiderProjects/Strizzwald.Amqp/Amqp.Types/obj/Debug/netcoreapp3.1/Amqp.Types.csproj.CoreCompileInputs.cache
+/Users/kennedy/RiderProjects/Strizzwald.Amqp/Amqp.Types/obj/Debug/netcoreapp3.1/Amqp.Types.AssemblyInfoInputs.cache
+/Users/kennedy/RiderProjects/Strizzwald.Amqp/Amqp.Types/obj/Debug/netcoreapp3.1/Amqp.Types.AssemblyInfo.cs
+/Users/kennedy/RiderProjects/Strizzwald.Amqp/Amqp.Types/obj/Debug/netcoreapp3.1/Amqp.Types.dll
+/Users/kennedy/RiderProjects/Strizzwald.Amqp/Amqp.Types/obj/Debug/netcoreapp3.1/Amqp.Types.pdb
