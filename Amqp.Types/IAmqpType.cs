@@ -4,6 +4,6 @@ namespace Amqp.Types
 {
     public interface IAmqpType
     {
-        KnownAmqpType Value { get; }
+        KnownAmqpType FormatCode { get; }
     }
 }

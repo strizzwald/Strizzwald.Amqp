@@ -3,26 +3,29 @@ using Amqp.Types.Extensions;
     
 namespace Amqp.Types
 {
-    public struct AmqpBool : IAmqpType
+    public struct AmqpBool
     {
-        private readonly KnownAmqpType _value;
-        public KnownAmqpType Value => _value == default ? KnownAmqpType.Boolean : _value;
-
-        public AmqpBool(byte value)
+        private readonly bool _value;
+        
+        public AmqpBool(byte encoded)
         {
-            _value = default(KnownAmqpType).GetBool(value);
+            _value = (AmqpBoolEncodings) encoded switch
+            {
+                AmqpBoolEncodings.False => false,
+                AmqpBoolEncodings.True => true,
+                _ => throw new InvalidOperationException(nameof(encoded))
+            };
         }
-
+        
         public bool ToBool()
         {
-            return Value switch
-            {
-                KnownAmqpType.Boolean => new bool(),
-                KnownAmqpType.BooleanFalse => false,
-                KnownAmqpType.BooleanTrue => true,
-                _ => throw new InvalidOperationException()
-            };
-
+            return _value;
         }
+    }
+
+    internal enum AmqpBoolEncodings
+    {
+        False = 0x00,
+        True = 0x01
     }
 }

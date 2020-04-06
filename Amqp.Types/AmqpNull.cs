@@ -1,9 +1,7 @@
 namespace Amqp.Types
 {
-    public struct AmqpNull : IAmqpType
+    public struct AmqpNull
     {
-        public KnownAmqpType Value => KnownAmqpType.Null;
-
         public static object ToNull()
         {
             return null;
