@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using System.Net;
 
 namespace Amqp.Types
 {
@@ -11,7 +13,9 @@ namespace Amqp.Types
             if (encoded.Length != sizeof(uint))
                 throw new ArgumentOutOfRangeException(nameof(encoded));
 
-            _value = BitConverter.ToUInt16(encoded, 0);
+            _value = BitConverter.IsLittleEndian
+                ? BitConverter.ToUInt32(encoded.Reverse().ToArray(), 0)
+                : BitConverter.ToUInt32(encoded, 0);
         }
 
         public uint ToUInt()

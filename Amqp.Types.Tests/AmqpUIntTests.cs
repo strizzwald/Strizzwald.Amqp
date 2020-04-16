@@ -9,7 +9,7 @@ namespace Amqp.Types.Tests
         [Test]
         public void ToUInt_ReturnsUInt()
         {
-            var i = new AmqpUInt(new byte[] {0x01, 0x00, 0x00, 0x00});
+            var i = new AmqpUInt(new byte[] {0x00, 0x00, 0x00, 0x01});
 
             Assert.AreEqual(1, i.ToUInt());
         }

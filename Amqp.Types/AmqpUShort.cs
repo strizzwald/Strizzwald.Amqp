@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace Amqp.Types
 {
@@ -11,7 +12,9 @@ namespace Amqp.Types
             if (encoded.Length != sizeof(ushort))
                 throw new ArgumentOutOfRangeException(nameof(encoded));
 
-            _value = BitConverter.ToUInt16(encoded, 0);
+            _value = BitConverter.IsLittleEndian ?
+                BitConverter.ToUInt16(encoded.Reverse().ToArray(), 0) :
+                BitConverter.ToUInt16(encoded, 0);
         }
 
         public ushort ToUShort()

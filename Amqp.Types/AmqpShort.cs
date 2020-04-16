@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 
 namespace Amqp.Types
 {
@@ -12,6 +13,15 @@ namespace Amqp.Types
                 throw new ArgumentOutOfRangeException(nameof(encoded));
 
             _value = BitConverter.ToInt16(encoded, 0);
+
+            if (BitConverter.IsLittleEndian)
+            {
+                _value = IPAddress.HostToNetworkOrder(_value);
+            }
+
+            _value = BitConverter.IsLittleEndian
+                ? IPAddress.HostToNetworkOrder(BitConverter.ToInt16(encoded, 0))
+                : BitConverter.ToInt16(encoded, 0);
         }
 
         public short ToShort()

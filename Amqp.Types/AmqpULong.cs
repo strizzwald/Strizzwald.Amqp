@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace Amqp.Types
 {
@@ -11,7 +12,9 @@ namespace Amqp.Types
             if (encoded.Length != sizeof(ulong))
                 throw new ArgumentOutOfRangeException(nameof(encoded));
 
-            _value = BitConverter.ToUInt64(encoded, 0);
+            _value = BitConverter.IsLittleEndian
+                ? BitConverter.ToUInt64(encoded.Reverse().ToArray(), 0)
+                : BitConverter.ToUInt64(encoded, 0);
         }
 
         public ulong ToULong()

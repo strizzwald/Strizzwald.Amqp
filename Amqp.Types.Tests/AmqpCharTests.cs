@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 
 namespace Amqp.Types.Tests
@@ -8,9 +9,15 @@ namespace Amqp.Types.Tests
         [Test]
         public void ToChar_ReturnsChar()
         {
-            var c = new AmqpChar(0x00);
+            var c = new AmqpChar(new byte[] {0x00, 0x00, 0x00, 0x00});
             
-            Assert.AreEqual('0', c.ToChar());
+            Assert.AreEqual('\u0000', c.ToChar());
+        }
+
+        [Test]
+        public void ToChar_ThrowsException()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new AmqpChar(new byte[] {0x00}));
         }
     }
 }

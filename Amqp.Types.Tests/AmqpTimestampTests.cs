@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using NUnit.Framework;
 
 namespace Amqp.Types.Tests
@@ -13,9 +14,19 @@ namespace Amqp.Types.Tests
             var b = DateTimeOffset.UnixEpoch.AddDays(1);
             var bytes = new Span<byte>(new byte[sizeof(long)]);
 
-            if (!BitConverter.TryWriteBytes(bytes, b.ToUnixTimeMilliseconds()))
+            if (BitConverter.IsLittleEndian)
             {
-               Assert.Fail($"Invalid cast {nameof(b)}");
+                if (!BitConverter.TryWriteBytes(bytes, IPAddress.HostToNetworkOrder(b.ToUnixTimeMilliseconds())))
+                {
+                    Assert.Fail($"Invalid cast {nameof(b)}");
+                }                
+            }
+            else
+            {
+                if (!BitConverter.TryWriteBytes(bytes, b.ToUnixTimeMilliseconds()))
+                {
+                    Assert.Fail($"Invalid cast {nameof(b)}");
+                }
             }
             
             var t = new AmqpTimestamp(bytes.ToArray());

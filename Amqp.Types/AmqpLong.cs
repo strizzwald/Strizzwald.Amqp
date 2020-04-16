@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 
 namespace Amqp.Types
 {
@@ -11,7 +12,9 @@ namespace Amqp.Types
             if (encoded.Length != sizeof(long))
                 throw new ArgumentOutOfRangeException(nameof(encoded));
 
-            _value = BitConverter.ToInt64(encoded, 0);
+            _value = BitConverter.IsLittleEndian
+                ? IPAddress.HostToNetworkOrder(BitConverter.ToInt64(encoded, 0))
+                : BitConverter.ToInt64(encoded, 0);
         }
 
         public long ToLong()

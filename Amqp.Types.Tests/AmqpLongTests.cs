@@ -11,7 +11,7 @@ namespace Amqp.Types.Tests
         public void AmqpLong_ReturnsLong()
         {
             var b = new AmqpLong(
-                new byte[] {0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00});
+                new byte[] {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01});
                 
             Assert.AreEqual(1, b.ToLong());
         }

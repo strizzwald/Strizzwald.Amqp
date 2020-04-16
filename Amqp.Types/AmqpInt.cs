@@ -1,4 +1,6 @@
 using System;
+using System.ComponentModel;
+using System.Net;
 
 namespace Amqp.Types
 {
@@ -8,10 +10,13 @@ namespace Amqp.Types
         
         public AmqpInt(byte[] encoded)
         {
-            if (encoded.Length != sizeof(uint))
+            if (encoded.Length != sizeof(int))
                 throw new ArgumentOutOfRangeException(nameof(encoded));
 
-            _value = BitConverter.ToInt16(encoded, 0);
+            _value = BitConverter.IsLittleEndian
+                ? IPAddress.NetworkToHostOrder(BitConverter.ToInt32(encoded, 0))
+                : BitConverter.ToInt32(encoded, 0);
+
         }
 
         public int ToInt()

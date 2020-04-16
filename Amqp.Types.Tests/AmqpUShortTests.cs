@@ -11,7 +11,7 @@ namespace Amqp.Types.Tests
         {
             var u = new AmqpUShort(new byte[] { 0x00, 0x01 });
 
-            Assert.AreEqual(256, u.ToUShort());
+            Assert.AreEqual(1, u.ToUShort());
         }
 
         [Test]
