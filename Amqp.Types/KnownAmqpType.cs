@@ -1,5 +1,3 @@
-using System;
-
 namespace Amqp.Types
 {
     public enum KnownAmqpType
