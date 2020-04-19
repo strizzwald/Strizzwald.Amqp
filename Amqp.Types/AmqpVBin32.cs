@@ -5,7 +5,7 @@ namespace Amqp.Types
 {
     public struct AmqpVBin32
     {
-        private const int MAX_LENGTH = (2 ^ 32) - 1;
+        private static readonly uint MAX_LENGTH = (uint)Math.Pow(2, 32) - 1;
 
         private readonly byte[] _value;
 

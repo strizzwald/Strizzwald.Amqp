@@ -28,9 +28,15 @@ namespace Amqp.Types.Tests
         [Test]
         public void AmqpVBin8_ThrowsException()
         {
-            byte[] bytes = Enumerable.Range(1, 2 ^ 8)
-                .Select(x => (byte)0x00)
-                .ToArray();
+            var MAX_VALUE = (ushort)Math.Pow(2, 8);
+            var bytes = new byte[MAX_VALUE];
+
+            for (var i = 0; i < MAX_VALUE; i++)
+            {
+                bytes[i] = 0x00;
+            }
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => new AmqpVBin8(bytes));
         }
     }
 }
